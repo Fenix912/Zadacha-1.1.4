@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
 
-    private final Connection connection = Util.getMySQLConnection();
+    private final Connection connection = Util.getConnection();
 
 
     public void createUsersTable() {
@@ -22,7 +22,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 "constraint table_name_pk " +
                 "unique (id) " +
                 ");";
-        try (Connection conn = Util.getMySQLConnection(); Statement stmt = connection.createStatement()){
+        try (Connection conn = Util.getConnection(); Statement stmt = connection.createStatement()){
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void dropUsersTable() {
         String sql = "DROP TABLE IF EXISTS users";
-        try (Connection conn = Util.getMySQLConnection(); Statement stmt = connection.createStatement()){
+        try (Connection conn = Util.getConnection(); Statement stmt = connection.createStatement()){
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
